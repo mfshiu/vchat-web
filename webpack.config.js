@@ -678,6 +678,7 @@ module.exports = (env, argv) => {
             stats: 'minimal',
             hotOnly: true,
             inline: true,
+            port: 8080,
         },
     };
 };
