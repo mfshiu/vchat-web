@@ -27,4 +27,6 @@ electron/pub
 # Auto-generated file
 /src/modules.ts
 /build_config.yaml
-vchat-web.code-workspace
+# Custom
+*.code-workspace
+*.bak
