@@ -27,10 +27,12 @@ RUN cp /src/config.tprai.json /src/webapp/config.json
 # App
 FROM nginx:alpine
 
+COPY --from=builder /src/certbot/conf/ /etc/nginx/ssl/
 COPY --from=builder /src/webapp /app
 
 # Override default nginx config
-COPY /nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+# COPY /nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY /nginx/conf.d/tprai.conf /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html \
   && ln -s /app /usr/share/nginx/html
