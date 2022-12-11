@@ -1,12 +1,12 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://matrix.gfactor.com.tw",
-            "server_name": "G-Factor",
+            "base_url": "https://matrix.tprai.org",
+            "server_name": "tprai.org",
             "base_url_0": "https://matrix-client.matrix.org",
             "server_name_0": "matrix.org",
             "base_url_1": "https://matrix.gfactor.com.tw",
-            "server_name_1": "G-Factor"
+            "server_name_1": "gfactor.com.tw"
         },
         "m.identity_server": {
             "base_url": "https://vector.im"

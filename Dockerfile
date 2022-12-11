@@ -1,3 +1,4 @@
+# Version: 11
 # Builder
 FROM --platform=$BUILDPLATFORM node:16-buster as builder
 
@@ -24,15 +25,22 @@ RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.
 RUN cp /src/config.tprai.json /src/webapp/config.json
 # RUN cp /src/config.sample.json /src/webapp/config.json
 
+# RUN mv /src/webapp /webapp
+# RUN rm -rf /src
+
+FROM ubuntu
+COPY --from=builder /src/webapp /app 
+# CMD ["echo Hello_vChat"]
+
 # App
-FROM nginx:alpine
+# FROM nginx:alpine
 
-COPY --from=builder /src/certbot/conf/ /etc/nginx/ssl/
-COPY --from=builder /src/webapp /app
+# COPY --from=builder /src/webapp /app 
 
-# Override default nginx config
+# SSL
+# COPY --from=builder /src/certbot/conf/ /etc/nginx/ssl/
+# COPY /nginx/conf.d/tprai.conf /etc/nginx/conf.d/default.conf
+# No SSL
 # COPY /nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
-COPY /nginx/conf.d/tprai.conf /etc/nginx/conf.d/default.conf
 
-RUN rm -rf /usr/share/nginx/html \
-  && ln -s /app /usr/share/nginx/html
+# RUN rm -rf /usr/share/nginx/html && ln -s /app /usr/share/nginx/html
